@@ -26,7 +26,6 @@ app.router.post('/post',function(){
   console.log( this.req.body );
   
   this.res.writeHead(200, { 'Content-Type': 'application/json' });
-  //this.res.write('Hey, you posted some cool data!\n');
   this.res.end(JSON.stringify(this.req.body));
 });
 

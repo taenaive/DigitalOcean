@@ -32,10 +32,10 @@ saveButton.addEventListener("click", function (event) {
         {applicantId : '123', base64png: signaturePad.toDataURL()}, // Serializes form data in standard format
         function(data ) { 
             alert("applicant" + " : " + data.applicantId +" saved!");
-            var baseString = data.base64png;
-            var index = baseString.indexOf(",");  // Gets the first index where a space occours
-            var imageEncodeType = baseString.substr(0, index); // Gets the first part
-            var textCode = baseString.substr(index + 1);
+            var baseString = data.base64png;//data
+            var index = baseString.indexOf(",");  // Gets the first index
+            var imageEncodeType = baseString.substr(0, index); // first part
+            var textCode = baseString.substr(index + 1);//second part
             console.log("type" + " : " + imageEncodeType );
             console.log("code" + " : " + textCode);
          },
