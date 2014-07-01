@@ -28,3 +28,7 @@ app.router.get('/', function(){
 		    });
 })
 app.start(3000);
+//test wsdl list and data set
+//        reqH.setLoginUserName(null);
+//        reqH.setRequestId("1");
+//http://mpstd-soa01:8001/soa-infra/services/default/DocumentUploadDetailsService/DocumentUploadDetailsService_ep?WSDL
