@@ -20,10 +20,10 @@ app.router.get('/', function(){
 	var parentThis = this;
 	fs.readFile(__dirname + '/public/index.html', function (err, data) {
 		      if (err) {
-		        //this.res.writeHead(500);
+		        parentThis.res.writeHead(500);
 		        return parentThis.res.end('Error loading index.html');
 		      }
-		      //this.res.writeHead(200);
+		      parentThis.res.writeHead(200);
 		      parentThis.res.end(data);
 		    });
 })
