@@ -13,27 +13,21 @@ app.use(flatiron.plugins.static, { dir: __dirname+'/public' });
 // });
 
 //start of  soap test
-  var soap = require('soap');
-  var url = 'http://198.135.15.18:8001/soa-infra/services/default/DocumentUploadDetailsService/DocumentUploadDetailsService_ep?WSDL';
-  var args = {name: 'value'};
-  soap.createClient(url, function(err, client) {
-  	  if(err){
-  	  	  console.log("Error msg: " + err);
-  	  }
-  	  else{
-	  	  console.log("Client  Describe output: ");
-	  	  console.log(client.describe());
-	      client.MyFunction(args, function(err, result) {
-	          console.log(result);
-      });
-      }
-  });
+ 
 
 //end of soap test
 
 
 app.router.get('/hello', function () {
   this.res.json({ 'hello': 'world' ,'dir' : __dirname })
+});
+
+app.router.post('/post',function(){
+  console.log( this.req.body );
+  
+  this.res.writeHead(200, { 'Content-Type': 'application/json' });
+  //this.res.write('Hey, you posted some cool data!\n');
+  this.res.end(JSON.stringify(this.req.body));
 });
 
 app.router.get('/', function(){
