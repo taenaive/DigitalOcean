@@ -60,23 +60,28 @@ Creature.prototype.insertSignature = function (sig) {
 };
 
 //end of soap test
+
 function base64ToBuffer(data){
-  var b64string = data;/* whatever */;
-  var buf = new Buffer(b64string, 'base64'); // Ta-da
+  var b64string = data;
+  var buf = new Buffer(b64string, 'base64');
   console.log("base64 buffer length = " +buf.length);
-  var fd = fs.openSync(path.join(__dirname,'public', 'log.png'), 'w')
-           console.log("fs.write retunred length :"  +
-                       fs.writeSync(fd, buf,0, buf.length, 0) );
-              fs.close(fd, function(){
-                  console.log('file closed');
-                });
+  // var fd = fs.openSync(path.join(__dirname,'public', 'log.png'), 'w')
+  //          console.log("fs.write retunred length :"  +
+  //                      fs.writeSync(fd, buf,0, buf.length, 0) );
+  //             fs.close(fd, function(){
+  //                 console.log('file closed');
+  //               });
   return buf;
 }
 
 
-app.router.get('/hello', function () {
-  this.res.json({ 'hello': 'world' ,'dir' : __dirname })
+app.router.get('/png', function () {
+  this.res.writeHead(200, { 'Content-Type': 'image/png' });
+  this.res.write(globalbuffer);
+  this.res.end();
 });
+
+var globalbuffer = new Buffer({}, 'base64');
 
 app.router.post('/post',function(){
   //console.log( this.req.body );
@@ -94,7 +99,7 @@ app.router.post('/post',function(){
 						  c_instance.base64png = textCode;
 						  console.log("applicant" + " : " + sig.applicantId +" saved!");
               //write to buffer.
-              base64ToBuffer(textCode);
+              globalbuffer = base64ToBuffer(textCode);
             
 
 						  c_instance.save(function(err, result){
