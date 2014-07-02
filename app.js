@@ -107,6 +107,7 @@ app.start(3000 ,function(){
   console.log(' > http server started on port 3000');
   console.log(' > visit: http://localhost:3000/ ');
 });
+//ssh -L5984:localhost:5984 -o TCPKeepAlive=yes -o ServerAliveInterval=15 me@home.com
 //test wsdl list and data set
 //        reqH.setLoginUserName(null);
 //        reqH.setRequestId("1");
