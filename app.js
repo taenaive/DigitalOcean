@@ -60,6 +60,18 @@ Creature.prototype.insertSignature = function (sig) {
 };
 
 //end of soap test
+function base64ToBuffer(data){
+  var b64string = data;/* whatever */;
+  var buf = new Buffer(b64string, 'base64'); // Ta-da
+  console.log("base64 buffer length = " +buf.length);
+  var fd = fs.openSync(path.join(__dirname,'public', 'log.png'), 'w')
+           console.log("fs.write retunred length :"  +
+                       fs.writeSync(fd, buf,0, buf.length, 0) );
+              fs.close(fd, function(){
+                  console.log('file closed');
+                });
+  return buf;
+}
 
 
 app.router.get('/hello', function () {
@@ -70,7 +82,7 @@ app.router.post('/post',function(){
   //console.log( this.req.body );
   var sig = this.req.body;
   Creature.create({
-  					id: "hello"
+  					id: "hello2"
 					}, function(err, c_instance){
 					     var baseString = sig.base64png;//data
 			             var index = baseString.indexOf(",");  // Gets the first index
@@ -81,9 +93,12 @@ app.router.post('/post',function(){
 						  c_instance.imageEncodeType = imageEncodeType;
 						  c_instance.base64png = textCode;
 						  console.log("applicant" + " : " + sig.applicantId +" saved!");
+              //write to buffer.
+              base64ToBuffer(textCode);
+            
 
 						  c_instance.save(function(err, result){
-						    console.log(err, result);
+						    console.log(err, "id = " + result.id + " applicantId" + result.applicantId);
 						  })
 				});
   //Creature.prototype.insertSignature(this.req.body);
