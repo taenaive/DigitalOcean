@@ -7,7 +7,14 @@ var flatiron = require('flatiron'),
 
 app.config.file({ file: path.join(__dirname, 'config', 'config.json') });
 
-app.use(flatiron.plugins.http );
+app.use(flatiron.plugins.http, {
+  // https: {
+  //   cert : path.join(__dirname, 'fakecerts', 'server.crt'),
+  //   key  : path.join(__dirname, 'fakecerts', 'server.key'),
+  //   ca   : path.join(__dirname, 'fakecerts', 'ca.crt'),
+  //   passphrase : 'tae123456'
+  // }
+} );
 app.use(flatiron.plugins.static, { dir: __dirname+'/public' });
 
 // app.router.get('/headers', function () {
