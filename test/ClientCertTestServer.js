@@ -20,3 +20,7 @@ https.createServer(options, function (req, res) {
         res.end('{"status": "denied"}');
     }
 }).listen(3000);
+
+// create client pcks12
+// cat client.key client.crt > client.pem
+// openssl pkcs12 -export -in client.pem -out client.pkcs12 -name "taePcks12"
