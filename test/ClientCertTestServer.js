@@ -3,7 +3,7 @@ var https = require('https'),      // module for https
     path = require('path');
 console.log("directory name : [%s]", path.join(__dirname, '../fakecerts', 'server.crt'));
 var options = {
-     cert : fs.readFileSync(path.join(__dirname, '../fakecerts/ca2/', 'server.crt')),
+     cert : fs.readFileSync(path.join(__dirname, '../fakecerts/ca2/', 'server2.crt')),
      key  : fs.readFileSync(path.join(__dirname, '../fakecerts', 'server.key')),
      ca   : fs.readFileSync(path.join(__dirname, '../fakecerts/ca2/', 'ca2.crt')),
     requestCert:        true,
