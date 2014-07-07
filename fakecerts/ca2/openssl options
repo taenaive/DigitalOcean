@@ -2,7 +2,7 @@ openssl options
 
 # Create the CA Key and Certificate for signing Client Certs
 openssl genrsa -des3 -out ca.key 4096
-openssl req -new -x509 -days 1024 -key ca2.key -out ca2.crt -subj "/C=US/O=U.S. Government/OU=DoD/OU=PKI/CN=DOD EMAIL CA-29"
+openssl req -new -x509 -days 1024 -key ca2.key -out ca2.crt -subj "/C=US/O=U.S. Government/OU=DoD/OU=PKI/CN=DoD Root CA 2"
 
 # Create the Server Key, CSR, and Certificate
 openssl genrsa -des3 -out server.key 1024
