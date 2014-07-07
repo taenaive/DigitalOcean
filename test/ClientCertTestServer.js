@@ -17,11 +17,11 @@ https.createServer(options, function (req, res) {
         res.end('{"status";:"approved"}');
     } else {
     	var cert = req.connection.getPeerCertificate();
-        res.writeHead(401, {"Content-Type": "application/json"});
+        res.writeHead(200, {"Content-Type": "application/json"});
         res.write(JSON.stringify({"status": "denied", "cert" : cert}) );
         res.end();
     }
-}).listen(3000);
+}).listen(443);
 
 // create client pcks12
 // cat client.key client.crt > client.pem
