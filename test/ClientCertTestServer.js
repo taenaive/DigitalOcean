@@ -16,8 +16,10 @@ https.createServer(options, function (req, res) {
         res.writeHead(200, {"Content-Type": "application/json"});
         res.end('{"status";:"approved"}');
     } else {
+    	var cert = req.connection.getPeerCertificate();
         res.writeHead(401, {"Content-Type": "application/json"});
-        res.end('{"status": "denied"}');
+        res.write(JSON.stringify({"status": "denied", "cert" : cert}) );
+        res.end();
     }
 }).listen(3000);
 
