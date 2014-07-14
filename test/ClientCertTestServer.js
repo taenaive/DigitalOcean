@@ -13,15 +13,15 @@ var options = {
 
 https.createServer(options, function (req, res) {
     if (req.client.authorized) {
-        res.writeHead(200, {"Content-Type": "application/json"});
-        res.end('{"status";:"approved"}');
+        res.writeHead(200, {"Content-Type": "text/plain"});
+        res.end('{"status":"approved"}');
     } else {
     	var cert = req.connection.getPeerCertificate();
-        res.writeHead(200, {"Content-Type": "application/json"});
+        res.writeHead(200, {"Content-Type": "text/plain"});
         res.write(JSON.stringify({"status": "denied", "cert" : cert}) );
         res.end();
     }
-}).listen(443);
+}).listen(3000);
 
 // create client pcks12
 // cat client.key client.crt > client.pem

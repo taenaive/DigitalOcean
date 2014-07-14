@@ -2,7 +2,8 @@
   var soap = require('soap');
   var url = 'http://mpstd-soa01:8001/soa-infra/services/default/SignatureService/SignatureService_ep?WSDL';
   var ep_uri ='http://mpstd-soa01:8001/soa-infra/services/default/SignatureService/SignatureService_ep'
-  var retrieveArgs = {requestHeader:{ loginUserName: 'null', requestId:'1'}, applicantId:'1261'};
+  var retrieveArgs = {requestHeader:{ loginUserName: 'null', requestId:'1'}, 
+                        applicantId:'1261',formId:'2807-2' };
   var saveArgs = {requestHeader:{ loginUserName: 'null', requestId:'1'}, 
                                         applicantId: '1261',
                                         userRoleType: 'Applicant',
@@ -21,19 +22,19 @@
   	  }
   	  else{
 	  	  console.log("       ======= Client  Describe output: ======");
-	  	  console.log(client.describe().SignatureService_ep.SignatureServicePort_pt.saveSignature);
+	  	  //console.log(client.describe().SignatureService_ep.SignatureServicePort_pt.saveSignature);
 	  	  console.log(client.describe().SignatureService_ep.SignatureServicePort_pt.retrieveSignature);
         
         //console.log( JSON.stringify(client) );
         //client.setSecurity(new soap.BasicAuthSecurity('tae', 'Welcome1')); 
 	       client.retrieveSignature(retrieveArgs, function(err, result) {
-          // console.log(JSON.stringify(result));
-	            //console.log(result.DocumentCollection);
+           //console.log(JSON.stringify(result));
+	            console.log(result.Signature[0].signatureImage);
           });
 
-        client.saveSignature(saveArgs, function(err, result) {
-           console.log(result);
-        });
+        // client.saveSignature(saveArgs, function(err, result) {
+        //    console.log(result);
+        // });
 
       }
   });
