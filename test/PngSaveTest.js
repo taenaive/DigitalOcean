@@ -29,7 +29,7 @@
         //client.setSecurity(new soap.BasicAuthSecurity('tae', 'Welcome1')); 
 	       client.retrieveSignature(retrieveArgs, function(err, result) {
            //console.log(JSON.stringify(result));
-	            console.log(result.Signature[0].signatureImage);
+	            console.log(result.Signature[0]);
           });
 
         // client.saveSignature(saveArgs, function(err, result) {
